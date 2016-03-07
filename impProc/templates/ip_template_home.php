@@ -1,0 +1,1 @@
+﻿<a href="ip_logout.php?logout">Sign Out</a>

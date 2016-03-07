@@ -15,7 +15,7 @@ if(isset($_SESSION['user']) != ""){
 if(isset($_POST['btn-login'])){
 	// getting email and password from form
 	$email = $_POST['email']; //mysql_real_escape_string($_POST['email']);
-	$upass = $_POST['pass']; //mysql_real_escape_string($_POST['pass']);
+	$upass = md5($_POST['pass']); //mysql_real_escape_string($_POST['pass']);
 	// trim spaces here
 	
 	$res = mysql_query("SELECT user_id, user_name, user_pass FROM users WHERE user_email = '$email'");
