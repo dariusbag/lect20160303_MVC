@@ -1,6 +1,5 @@
 ﻿<?php
 require_once '../pdo_connect/pdo_connect.php';
-require_once '../view/pdo_view_home.php';
 
 session_start();
 
@@ -17,7 +16,6 @@ $userName = $userName->fetchAll();
 $userName = $userName[0];
 // getting value from array and making it a string
 $userName = $userName['user_name'];
-echo $userName;
 
-
+require_once '../view/pdo_view_home.php';
 ?>

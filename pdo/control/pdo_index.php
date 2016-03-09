@@ -1,6 +1,5 @@
 ﻿<?php
 require_once '../pdo_connect/pdo_connect.php';
-require_once '../view/pdo_view_index.php';
 
 session_start();
 
@@ -9,10 +8,12 @@ if(isset($_SESSION['user'])){
 }
 
 // checking if form submitted
-if(isset($_POST['btn-login'])){
+if(!isset($_POST['btn-login'])){
+        echo 'Enter email and password';
+    }else{
 	// getting email and password from form
-	$email =  $_POST['email']; //mysql_real_escape_string($_POST['email']);
-	$upass = md5($_POST['pass']); //mysql_real_escape_string($_POST['pass']);
+	$email =  $_POST['email'];
+	$upass = md5($_POST['pass']);
 	// trim spaces here
 	
 	// getting user name from db as object
@@ -34,8 +35,7 @@ if(isset($_POST['btn-login'])){
 
 			header("Location: ../control/pdo_home.php");
 		}
-	}
-
-	
+	}	
 }
+require_once '../view/pdo_view_index.php';
 ?>
