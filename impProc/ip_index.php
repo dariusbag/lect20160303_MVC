@@ -14,20 +14,17 @@ if(isset($_POST['btn-login'])){
 	// trim spaces here
     
     // getting object
-    $result = mysqli_query($link,"SELECT user_id, user_pass FROM users WHERE user_email = '$email'");
-    // var_dump($result);
+    $result = mysqli_query($link, "SELECT user_id, user_pass FROM users WHERE user_email = '$email' AND user_pass = '$upass'");
+
+    if(mysqli_num_rows($result) == 1) {
+        // getting array
+        $row = mysqli_fetch_assoc($result); //mysql_fetch_array
+        $_SESSION['user'] = $row['user_id'];
+        header("Location: ip_home.php");
+    } else {
+        echo 'Wrong username/password ';
+    }
     
-    // getting array
-    $row = mysqli_fetch_assoc($result); //mysql_fetch_array
-    
-    $count = mysqli_num_rows($result); //should be 1
-    
-    	if($count == 1 && $row['user_pass'] == $upass){
-		$_SESSION['user'] = $row['user_id'];
-		header("Location: ip_home.php");
-	}else{
-		echo 'Wrong username/password ';
-	}
 }
 
 require_once 'templates/ip_template_index.php';
